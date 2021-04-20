@@ -44,7 +44,6 @@ export class WeatherService {
       localStorage.setItem("cities", JSON.stringify(data));
 
     }
-    window.location.reload(true);
   }
 
   addNewCityLocation(city) {
@@ -65,9 +64,6 @@ export class WeatherService {
       window.alert(city+" city is already exist in list")
     }
 
-    //after added a city it will reload the page
-    window.location.reload(true);
-
   }
 
   setDefaultCityLocation(city) {
@@ -86,8 +82,6 @@ export class WeatherService {
     localStorage.setItem("cities", JSON.stringify(data));
     window.alert(city + " city is setted as default location")
 
-    //after added a city it will reload the page
-    window.location.reload(true);
 
   }
 

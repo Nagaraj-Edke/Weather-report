@@ -47,6 +47,22 @@ export class HomeComponent implements OnInit {
     this.getWeatherData(this.cities[0]);
   }
 
+  getMyData(){
+    let city;
+
+    navigator.geolocation.getCurrentPosition((pos)=>{
+      let lat = pos.coords.latitude;
+      let long = pos.coords.longitude;
+      this.weatherService.getLocation(lat,long).subscribe(res=>{
+        this.result = res;
+        city = this.result.list[0].name;
+        this.getWeatherData(city);
+        
+      })
+    })
+
+  }
+
   getWeatherData(city) {
 
     this.weatherService.getWeatherData(city,this.unit).subscribe((data) => {
