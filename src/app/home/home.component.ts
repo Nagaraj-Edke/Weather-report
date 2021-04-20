@@ -15,21 +15,14 @@ export class HomeComponent implements OnInit {
   //measurement
   unit;
   cityStatus:boolean =false;
-  errorMsg = "";
+  
   pStatus:boolean = false;
   pErrorMsg = "";
 
   result: any;
   result1:any;
 
-  //weather Deatails
-  temperature = "";
-  windSpeed = 1;
-  pressure;
-  weatherDescription = "";
-  cityName = "";
-  weatherIcon;
-
+  actualData;
   predicts = [];
   
   //errStatus = false;
@@ -69,21 +62,23 @@ export class HomeComponent implements OnInit {
     this.weatherService.getWeatherData(city,this.unit).subscribe((data) => {
       this.result = data;
 
-      this.cityStatus = true;
-
-      this.cityName = this.result.name;
-      this.windSpeed = this.result.wind.speed;
-      this.temperature = this.result.main.temp;
+  
+      let cityName = this.result.name;
+      let windSpeed = this.result.wind.speed;
+      windSpeed=windSpeed+" m/s";
+      let temperature = this.result.main.temp;
       if(this.unit =='imperial'){
-        this.temperature = this.temperature+" F";
+        temperature = temperature+" F";
       }
       else{
-        this.temperature = this.temperature+" C";
+        temperature = temperature+" C";
       }
-      this.pressure = this.result.main.pressure;
-      this.weatherDescription = this.result.weather[0].description;
+      let pressure = this.result.main.pressure;
+      pressure=pressure+" hpa"
+      let weatherDescription = this.result.weather[0].description;
       //console.log(this.iconId);
-      this.weatherIcon = `http://openweathermap.org/img/wn/${this.result.weather[0].icon}@2x.png`;
+      let weatherIcon = `http://openweathermap.org/img/wn/${this.result.weather[0].icon}@2x.png`;
+      this.actualData = {"cityName":cityName,"icon":weatherIcon,"description":weatherDescription,"temperature":temperature,"windSpeed":windSpeed,"pressure":pressure}
     });
 
     this.getPredictData(city);
