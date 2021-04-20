@@ -1,0 +1,54 @@
+<div class="mt-3">
+    <h4 class="text-center">{{title | uppercase}}</h4>
+    <hr class="margin">
+</div>
+
+<div class="bg-light margin">
+    <div class="margin">
+        <div class="mt-5 d-flex justify-content-start">
+            <p class="col-3">saved locations</p>
+            <select class="bg-light col-2">
+                <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
+            </select>
+        </div>
+
+        <div class="mt-5 d-flex justify-content-start">
+            <p class="col-3">select a location to delete</p>
+            <select #select class="bg-light col-2">
+                <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
+            </select>
+            <input type="button" class="ml-5 btn btn-outline-danger col-2" value="delete"
+                (click)="removeCity(select.value)">
+        </div>
+
+        <div class="mt-5 d-flex justify-content-start">
+            <label class="col-3">Add a new location</label>
+            <input #input type="text" class="bg-light col-2" placeholder="Enter new location" name="location">
+            <input type="button" class="ml-5 col-2 btn btn-outline-primary" name="add" value="add"
+                (click)="addNewCity(input.value)">
+        </div>
+
+        <div class="mt-5 d-flex justify-content-start">
+            <p class="col-3">set default locations</p>
+            <select #setDefaultCity class="col-2">
+                <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
+            </select>
+            <input type="button" class="ml-5 btn btn-outline-dark col-2" value="set Default"
+                (click)="setDefault(setDefaultCity.value)">
+        </div>
+        <br><br>
+
+        <div class="d-flex">
+            <label class="col-3">Change units</label>
+            <div class="col-2">
+                <div id="units">
+                    <input type="radio" id="imperial" name="unit" value="imperial" [checked]="status1"> imperial
+                    <br>
+                    <input type="radio" id="metric" name="unit" value="metric" [checked]="status2"> metric
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

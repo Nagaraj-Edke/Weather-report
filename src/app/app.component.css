@@ -1,0 +1,10 @@
+.bgColor{
+    background-color: skyblue;
+}
+li:hover ,a:hover{
+    background-color: blue;
+    color:white;
+}
+ul{
+    list-style: none;
+}

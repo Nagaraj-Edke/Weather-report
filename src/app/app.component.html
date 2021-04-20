@@ -1,0 +1,21 @@
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+<h3 class="text-center bg-info mx-3 mt-5"> {{title}} 
+    <h3 class="fas fa-cloud-sun"></h3>
+</h3>
+
+<div class="mx-3 p-2" id="tabs">
+    <ul class="d-flex justify-content-between row mr-3"> <!--nav nav-tabs-->
+        <li class="nav-item active bgColor col-lg-6 col-sm-12" routerLinkActive="active">
+            <a class="nav-link bgColor fas fa-home" routerLink="home" title="Home">Home</a>
+        </li>
+        <li class="nav-item col-lg-6 bgColor col-sm-12" routerLinkActive="active">
+            <a class="nav-link bgColor fas fa-cogs" routerLink="setting" title="Setting"> Setting
+            </a>
+        </li>
+    </ul>
+</div>
+
+
+
+<router-outlet></router-outlet>
