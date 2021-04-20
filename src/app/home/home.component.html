@@ -4,7 +4,7 @@
 </div>
 
 <div>
-    <button class="mx-5 col-lg-4 col-sm-6 btn btn-primary" (click)="getMyData()">Get Your location weather data</button>
+    <button class="mx-5 col-lg-4 col-sm-6 btn btn-primary">Get Your location weather</button>
 </div>
 <div class="m-5 d-flex justify-content-lg-center justify-content-md-center justify-content-sm-center row">
     <div class="col-lg-3 col-sm">
@@ -15,14 +15,19 @@
         </select>
         <br><br>
     </div>
-    <div class="flex-column col-4 col-lg-4 col-sm-12 font-weight-bold">
-        <h3> {{actualData.cityName}} </h3>
-        <img [src]="actualData.icon" alt="img">
-        <p>{{actualData.weatherDescription}}</p>
-        <p>{{actualData.temperature}}</p>
-        <p>{{actualData.windSpeed}}</p>
-        <p> {{actualData.pressure}}</p>
+    <div *ngIf='cityStatus; else elseBlock' class="flex-column col-4 col-lg-4 col-sm-12 font-weight-bold">
+        <h3> {{cityName}} </h3>
+        <img [src]="weatherIcon" alt="img">
+        <p>{{weatherDescription}}</p>
+        <p>{{temperature}}</p>
+        <p>{{windSpeed}} m/s</p>
+        <p> {{pressure}} hpa</p>
     </div>
+
+    <ng-template #elseBlock class="flex-column col-lg-4 col-sm-12 font-weight-bold">
+        <h3>404</h3>
+        <h2>{{errorMsg}}</h2>
+    </ng-template>
 
 </div>
 
@@ -30,15 +35,21 @@
 
 <h3 class="display-6 ml-5">Prediction weather for next 5 Days</h3>
 <br><br>
+
 <div class=" ml-5 row">
     <div class="col-lg-1 col-md-1"></div>
-    <div *ngFor="let data of predicts" class=" col-lg-2 col-md-2 col-sm-6 font-weight-bold">
-        <h5>{{data.day}}</h5>
-        <img [src]="data.icon" alt="img">
-        <p>{{data.description}}</p>
-        <p>{{data.temperature}}</p>
-        <p>{{data.wind_speed}} m/s</p>
-        <p>{{data.pressure}} hpa</p>
+    <div *ngIf="!pStatus; else errorBlock">
+        <h3>404</h3>
+        <h2>{{pErrorMsg}}</h2>
     </div>
+    <ng-template #errorBlock>
+        <div *ngFor="let data of predicts" class=" col-lg-2 col-md-2 col-sm-6 font-weight-bold">
+            <h5>{{data.day}}</h5>
+            <img [src]="data.icon" alt="img">
+            <p>{{data.description}}</p>
+            <p>{{data.temperature}}</p>
+            <p>{{data.wind_speed}} m/s</p>
+            <p>{{data.pressure}} hpa</p>
+        </div>
+    </ng-template>
 </div>
-
