@@ -9,7 +9,7 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   getWeatherData(city,unit) {
-    let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=904f4892e202e4b9e33580d6b6f2cd52&units=${unit}`;
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=904f4892e202e4b9e33580d6b6f2cd52&units=${unit}`;
     return this.http.get(url);
     //http://api.weatherstack.com/current?access_key=a255da8c99ccccd331ce8ea55d6e75ab&query=${city}&units=m
   }
