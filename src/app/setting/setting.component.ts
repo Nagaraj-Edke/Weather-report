@@ -60,6 +60,9 @@ export class SettingComponent implements OnInit {
       window.alert("Enter city name correct")
     }
     else {
+      city = city[0].toUpperCase()+city.slice(1);
+      console.log(city);
+      
       this.weatherService.addNewCityLocation(city);
     }
   }
