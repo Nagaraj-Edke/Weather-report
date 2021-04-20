@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
       this.unit = "metric";
     }
     
-    this.getWeatherData(this.cities[0]);
+    this.getMyData();
   }
 
   getMyData(){
