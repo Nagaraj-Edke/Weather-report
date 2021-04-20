@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   pErrorMsg = "";
 
   result: any;
+  result1:any;
 
   //weather Deatails
   temperature = "";
@@ -100,12 +101,12 @@ export class HomeComponent implements OnInit {
     weekday[5] = "Friday";
     weekday[6] = "Saturday";
     this.weatherService.getWeatherPredicationData(city,this.unit).subscribe(res => {
-      this.result = res;
+      this.result1 = res;
       this.pStatus = true;
       //this.predicts = [];
       //predict next 5days;
       for (let i = 0; i < 5; i++) {
-        let p1 = this.result.list[1 + (8*i)];
+        let p1 = this.result1.list[1 + (8*i)];
        
         var d = new Date(p1.dt_txt);
 
