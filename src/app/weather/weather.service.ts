@@ -101,7 +101,7 @@ export class WeatherService {
   }
 
   getLocation(lat,lon){
-    let  url =`http://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&cnt=1&appid=904f4892e202e4b9e33580d6b6f2cd52`;
+    let  url =`https://api.openweathermap.org/data/2.5/find?lat=${lat}&lon=${lon}&cnt=1&appid=904f4892e202e4b9e33580d6b6f2cd52`;
     return this.http.get(url);
   }
 }
