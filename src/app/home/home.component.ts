@@ -83,13 +83,6 @@ export class HomeComponent implements OnInit {
       this.weatherDescription = this.result.weather[0].description;
       //console.log(this.iconId);
       this.weatherIcon = `http://openweathermap.org/img/wn/${this.result.weather[0].icon}@2x.png`;
-    },
-    (err)=>{
-      this.result = err;
-      
-      this.cityStatus = false;
-      this.errorMsg = err.error.message;    
-      
     });
 
     this.getPredictData(city);
