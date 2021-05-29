@@ -27,6 +27,8 @@ export class SettingComponent implements OnInit {
 
     document.getElementById('units').addEventListener('change', (e) => {
       this.target = e.target;
+      console.log(e.target);
+      
 
       switch (this.target.id) {
         case 'imperial':

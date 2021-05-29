@@ -8,7 +8,7 @@ import { SettingComponent } from './setting/setting.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {HttpClientModule} from '@angular/common/http'
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
