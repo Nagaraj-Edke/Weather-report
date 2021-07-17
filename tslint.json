@@ -16,6 +16,7 @@
     "deprecation": {
       "severity": "warning"
     },
+    "no-var-keyword": false,
     "eofline": true,
     "import-blacklist": [
       true,
@@ -64,6 +65,7 @@
       true,
       "as-needed"
     ],
+    "triple-equals": false,
     "quotemark": [
       true,
       "single"

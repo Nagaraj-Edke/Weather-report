@@ -10,8 +10,12 @@ export class PageNotFoundComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.warn("This is a message from Page Not Found");
-    console.log("Ok");
+    console.warn('This is a message from Page Not Found');
+    console.log(msg);
+    var msg = 'hello';
+    msg = 'helloq1';
+
+
   }
 
 }

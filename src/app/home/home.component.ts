@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   cities;
   // measurement
   unit;
+  scale;
   cityStatus = false;
   errorMsg = '';
   pStatus = false;
@@ -35,6 +36,9 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.cities = this.weatherService.getCities();
     const units = this.weatherService.getMeasurement();
+    let g = 'Hello';
+    g = 'OK';
+    console.log(g);
     if (units.imperial){
       this.unit = 'imperial';
     }
@@ -70,10 +74,12 @@ export class HomeComponent implements OnInit {
       this.windSpeed = this.result.wind.speed;
       this.temperature = this.result.main.temp;
       if (this.unit === 'imperial') {
-        this.temperature = this.temperature + ' F';
+        // this.temperature = this.temperature + ' F';
+        this.scale = 'F';
       }
       else {
-        this.temperature = this.temperature + ' C';
+        // this.temperature = this.temperature + ' C';
+        this.scale = 'C';
       }
       this.pressure = this.result.main.pressure;
       this.weatherDescription = this.result.weather[0].description;
@@ -106,12 +112,14 @@ export class HomeComponent implements OnInit {
 
         const day1 = weekday[d.getDay()];
 
-        let pTemp = p1.main.temp;
+        const pTemp = p1.main.temp;
         if (this.unit === 'imperial'){
-          pTemp = pTemp + ' F';
+          // pTemp = pTemp + ' F';
+          this.scale = 'F';
         }
         else{
-          pTemp = pTemp + ' C';
+          // pTemp = pTemp + ' C';
+          this.scale = 'C';
         }
 
         const pWindSpeed = p1.wind.speed;

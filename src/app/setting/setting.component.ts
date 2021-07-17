@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {WeatherService} from '../weather/weather.service'
+import {WeatherService} from '../weather/weather.service';
 
 @Component({
   selector: 'app-setting',
@@ -8,27 +8,29 @@ import {WeatherService} from '../weather/weather.service'
 })
 export class SettingComponent implements OnInit {
 
-  constructor(private weatherService:WeatherService) { }
-  title ="settings"
+  constructor(private weatherService: WeatherService) { }
+  title = 'settings';
   cities;
-  items=["imperial","metric"];
+  items = ['imperial', 'metric'];
 
-  status1=false;
+  status1 = false;
   status2 = true;
-  radio="";
+  radio = '';
   target;
-  
+
   ngOnInit(): void {
     this.cities = this.weatherService.getCities();
-    
+
     let units = this.weatherService.getMeasurement();
     this.status1 = units.imperial;
     this.status2 = units.metric;
+    const greet = 'hello';
+    console.log(greet);
 
     document.getElementById('units').addEventListener('change', (e) => {
       this.target = e.target;
       console.log(e.target);
-      
+
 
       switch (this.target.id) {
         case 'imperial':
@@ -40,37 +42,41 @@ export class SettingComponent implements OnInit {
           this.status2 = true;
           break;
       }
-      let units = this.weatherService.getMeasurement();
-      units.imperial = this.status1;
-      units.metric = this.status2;
-      
-      this.weatherService.setMeasurement(units);
+      const unit = this.weatherService.getMeasurement();
+      unit.imperial = this.status1;
+      unit.metric = this.status2;
+      console.log(unit);
+
+
+      this.weatherService.setMeasurement(unit);
     });
 
     units = this.weatherService.getMeasurement();
     this.status1 = units.imperial;
     this.status2 = units.metric;
   }
- 
 
-  removeCity(city){
+
+  removeCity(city): void{
     this.weatherService.removeCityName(city);
   }
 
-  addNewCity(city) {
-    if (city == "" || city == null) {
-      window.alert("Enter city name correct")
+  addNewCity(city): void {
+    if (city === '' || city === null) {
+      window.alert('Enter city name correct');
     }
     else {
-      city = city[0].toUpperCase()+city.slice(1);
+      city = city[0].toUpperCase() + city.slice(1);
       console.log(city);
-      
+
       this.weatherService.addNewCityLocation(city);
     }
   }
 
-  setDefault(city){
+  setDefault(city): void{
     this.weatherService.setDefaultCityLocation(city);
   }
+
+
 
 }

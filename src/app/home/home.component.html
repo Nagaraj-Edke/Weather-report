@@ -1,3 +1,4 @@
+<body>
 <div class="mt-1">
     <h4 class="text-center">{{title | uppercase}}</h4>
     <hr class='mx-5 bg-dark'>
@@ -19,7 +20,7 @@
         <h3> {{cityName}} </h3>
         <img [src]="weatherIcon" alt="img">
         <p>{{weatherDescription}}</p>
-        <p>{{temperature}}</p>
+        <p>{{temperature}} &deg;{{scale}}</p>
         <p>{{windSpeed}} m/s</p>
         <p> {{pressure}} hpa</p>
     </div>
@@ -47,9 +48,10 @@
             <h5>{{data.day}}</h5>
             <img [src]="data.icon" alt="img">
             <p>{{data.description}}</p>
-            <p>{{data.temperature}}</p>
+            <p>{{data.temperature}} &deg;{{scale}}</p>
             <p>{{data.wind_speed}} m/s</p>
             <p>{{data.pressure}} hpa</p>
         </div>
     </ng-template>
 </div>
+</body>
