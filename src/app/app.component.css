@@ -31,7 +31,7 @@
   border-bottom: 3px solid transparent;
 }
 .bg-effect a:hover {
-    border-bottom: 3px solid blue;
+    border-bottom: 5px solid blue;
 }
   
 .bg-effect a.active {

@@ -30,14 +30,13 @@ export class WeatherService {
       localStorage.setItem('cities', '["Hyderabad","Bangalore"]');
     }
     const cities = JSON.parse(localStorage.getItem('cities'));
-    console.log(typeof cities);
-
+    // console.log(typeof cities);
 
     return cities;
   }
 
   removeCityName(city): void {
-    console.log(city);
+    // console.log(city);
     const data = JSON.parse(localStorage.getItem('cities'));
     const index = data.indexOf(city);
 
@@ -79,7 +78,7 @@ export class WeatherService {
         data.unshift(item);
       }
     });
-    console.log(data);
+    // console.log(data);
 
     // set new array of city to localstorage
     localStorage.setItem('cities', JSON.stringify(data));
@@ -95,7 +94,7 @@ export class WeatherService {
       localStorage.setItem('unit', '{"imperial":false,"metric":true}');
     }
     const unit = JSON.parse(localStorage.getItem('unit'));
-    console.log(typeof unit);
+    // console.log(typeof unit);
     
     return unit;
   }

@@ -24,12 +24,11 @@ export class SettingComponent implements OnInit {
     let units = this.weatherService.getMeasurement();
     this.status1 = units.imperial;
     this.status2 = units.metric;
-    const greet = 'hello';
-    console.log(greet);
 
     document.getElementById('units').addEventListener('change', (e) => {
       this.target = e.target;
-      console.log(e.target);
+      // console.log(e.target);
+    
 
 
       switch (this.target.id) {
@@ -45,8 +44,7 @@ export class SettingComponent implements OnInit {
       const unit = this.weatherService.getMeasurement();
       unit.imperial = this.status1;
       unit.metric = this.status2;
-      console.log(unit);
-
+      // console.log(unit);
 
       this.weatherService.setMeasurement(unit);
     });
@@ -73,7 +71,7 @@ export class SettingComponent implements OnInit {
     }
     else {
       city = city[0].toUpperCase() + city.slice(1);
-      console.log(city);
+      // console.log(city);
 
       this.weatherService.addNewCityLocation(city);
     }

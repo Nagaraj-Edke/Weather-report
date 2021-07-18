@@ -36,9 +36,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.cities = this.weatherService.getCities();
     const units = this.weatherService.getMeasurement();
-    let g = 'Hello';
-    g = 'OK';
-    console.log(g);
+
     if (units.imperial){
       this.unit = 'imperial';
     }
