@@ -26,5 +26,14 @@
 }
 .bg-effect{
     background-image: linear-gradient(to right,rgb(26, 70, 151),rgb(72, 114, 192),rgb(101, 120, 206),rgb(158, 146, 226),rgb(228, 153, 110));
-    color: rgb(82, 141, 196);
+}
+.bg-effect a{
+  border-bottom: 3px solid transparent;
+}
+.bg-effect a:hover {
+    border-bottom: 3px solid blue;
+}
+  
+.bg-effect a.active {
+    border-bottom: 3px solid blue;
 }
