@@ -37,14 +37,14 @@
     <h3 class="display-6 ml-5">5 days Forcast</h3>
     <br>
 
-    <div class="row ml-sm-3">
+    <div class="row ml-sm-3 ml-md-0">
         <div class="col-lg-1 col-md-1"></div>
         <div *ngIf="!pStatus; else errorBlock">
             <h3>404</h3>
             <h2>{{pErrorMsg}}</h2>
         </div>
         <ng-template #errorBlock>
-            <div *ngFor="let data of predicts" class="card col-lg-2 col-md-2 col-sm-6 font-weight-bold bg-blue mx-md-2" style="width: 18rem;">
+            <div *ngFor="let data of predicts" class="card col-lg-2 col-md-2 col-sm-6 font-weight-bold bg-blue mx-md-2" style="min-width: 15rem;">
                 <div class="card-body text-center">
                     <h5>{{data.day}}</h5>
                     <img [src]="data.icon" alt="img">
