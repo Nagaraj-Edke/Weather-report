@@ -1,10 +1,46 @@
-.bgColor{
+.weather-image{
+    height: auto;
+    background-image: url("src/images/weather.jpg");
+    background-size: cover;
+    padding: 5px 1px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.bg-effect{
+    background-image: linear-gradient(to right,rgb(26, 70, 151),rgb(72, 114, 192),rgb(101, 120, 206),rgb(158, 146, 226),rgb(228, 153, 110));
+    color: rgb(82, 141, 196);
+    position:sticky;
+    top: 0;
+    width: 100%;
+    height: 50px;
+
+}
+#font{
+    color: aliceblue;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+.multiText{
+    background-image: linear-gradient(to left,rgb(118, 135, 209),rgb(82, 141, 196),rgb(108, 161, 211),rgb(228, 153, 110),rgb(235, 99, 75),rgb(236, 51, 51));
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+/* .bgColor{
     background-color: skyblue;
 }
 li:hover ,a:hover{
-    background-color: blue;
     color:white;
 }
 ul{
     list-style: none;
+} */
+#scrollable{
+    overflow: auto;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }

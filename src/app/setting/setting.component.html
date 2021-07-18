@@ -4,41 +4,45 @@
 </div>
 
 <div class="margin">
-    <div class="bg-light margin justify-content-sm-center">
+    <div class="margin justify-content-sm-center">
         <div class="mt-5 d-flex justify-content-start row">
-            <p class="col-lg-3 col-sm-8">saved locations</p>
-            <select class="bg-light col-2 col-lg-2 col-sm-8 mx-sm-2">
+            <p class="col-lg-3 col-sm-8">Saved locations</p>
+            <select class="bg-dark col-lg-2 col-sm-8">
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
         </div>
-
-        <div class="bg-light mt-5 d-flex justify-content-start row">
-            <p class="col-lg-3 col-sm-8">select a location to delete</p>
-            <select #select class="bg-light col-lg-2 col-sm-8">
-                <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
-            </select>
-            <input type="button" class="ml-5 btn btn-outline-danger col-lg-2 col-sm-3 col-2" value="delete"
-                (click)="removeCity(select.value)"> 
-        </div>
-
-        <div class="bg-light mt-5 d-flex justify-content-start row">
-            <label class="col-lg-3 col-sm-8">Add a new location</label>
-            <input #input type="text" class="bg-light col-lg-2 col-sm-8 col-8" placeholder="Enter new location" name="location">
-            <input type="button" class="ml-5 col-2 col-lg-2 col-sm-3 btn btn-outline-primary" name="add" value="add"
+        
+        <div class="mt-5 d-flex justify-content-start row">
+            <label class="col-lg-3 col-sm-8">Add city</label>
+            <input #input type="text" class="bg-dark col-lg-2 col-sm-8" placeholder="Enter new location" name="location">
+            <input type="button" class="ml-md-5 col-lg-2 col-sm-6 btn btn-outline-primary text-primary1" name="add" value="Add"
                 (click)="addNewCity(input.value)">
         </div>
 
-        <div class="bg-light mt-5 d-flex justify-content-start row">
-            <p class="col-lg-3 col-sm-8">set default locations</p>
-            <select #setDefaultCity class="col-lg-2 col-sm-8 mx-sm-2">
+
+        <div class=" mt-5 d-flex justify-content-start row">
+            <p class="col-lg-3 col-sm-8">Remove city</p>
+            <select #select class="bg-dark col-lg-2 col-sm-8 text-center">
+                <option value="" style="color: grey;">--select option--</option>
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
-            <input type="button" class="ml-5 btn btn-outline-dark col-lg-2 col-sm-3" value="set Default"
+            <input type="button" class="ml-md-5 btn btn-outline-danger col-lg-2 col-sm-6 text-danger1" value="Remove"
+                (click)="removeCity(select.value)"> 
+        </div>
+
+
+        <div class="mt-5 d-flex justify-content-start row">
+            <p class="col-lg-3 col-sm-8">Set default city</p>
+            <select #setDefaultCity class="bg-dark col-lg-2 col-sm-8">
+                <option value="" style="color: grey;">--select option--</option>
+                <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
+            </select>
+            <input type="button" class="ml-md-5 btn btn-outline-dark col-lg-2 col-sm-3 text-dark1" value="Set Default"
                 (click)="setDefault(setDefaultCity.value)">
         </div>
         <br><br>
 
-        <div class="bg-light d-flex row">
+        <div class="d-flex row">
             <label class="col-lg-3 col-sm-8">Change units</label>
             <div class="col-lg-2 col-sm-8">
                 <div id="units">

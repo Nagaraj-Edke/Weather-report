@@ -1,7 +1,32 @@
 .margin{
     margin: 3%;
 }
+*{
+    color: aliceblue;
+    font-size: 18px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+.text-primary1{
+    color:blue
+}
 
+.text-primary1:hover{
+    color:white
+}
+.text-danger1{
+    color: red;
+}
+
+.text-danger1:hover{
+    color: white;
+}
+.text-dark1{
+    color: black;
+}
+
+.text-dark1:hover{
+    color: white;
+}
 @media only screen and (max-width:600){
     
 }

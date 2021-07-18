@@ -58,7 +58,13 @@ export class SettingComponent implements OnInit {
 
 
   removeCity(city): void{
-    this.weatherService.removeCityName(city);
+    if(city){
+      this.weatherService.removeCityName(city);
+    }
+    else{
+      alert("select an option")
+    }
+    
   }
 
   addNewCity(city): void {
@@ -74,7 +80,13 @@ export class SettingComponent implements OnInit {
   }
 
   setDefault(city): void{
-    this.weatherService.setDefaultCityLocation(city);
+    if(city){
+      this.weatherService.setDefaultCityLocation(city);
+    }
+    else{
+      alert("select an option")
+    }
+    
   }
 
 
