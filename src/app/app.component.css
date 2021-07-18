@@ -7,18 +7,15 @@
     background-position: center;
     background-repeat: no-repeat;
 }
-.bg-effect{
-    background-image: linear-gradient(to right,rgb(26, 70, 151),rgb(72, 114, 192),rgb(101, 120, 206),rgb(158, 146, 226),rgb(228, 153, 110));
-    color: rgb(82, 141, 196);
-    /* position:sticky;
-    top: 0;
-    width: 100%;
-    height: auto; */
 
-}
 #font{
+    color: black;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+#font1{
     color: aliceblue;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+
 }
 .multiText{
     background-image: linear-gradient(to left,rgb(118, 135, 209),rgb(82, 141, 196),rgb(108, 161, 211),rgb(228, 153, 110),rgb(235, 99, 75),rgb(236, 51, 51));
@@ -27,12 +24,7 @@
     background-clip: text;
     color: transparent;
 }
-
-#scrollable{
-    overflow:scroll;
-    position: relative;
-    top: auto;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.bg-effect{
+    background-image: linear-gradient(to right,rgb(26, 70, 151),rgb(72, 114, 192),rgb(101, 120, 206),rgb(158, 146, 226),rgb(228, 153, 110));
+    color: rgb(82, 141, 196);
 }
