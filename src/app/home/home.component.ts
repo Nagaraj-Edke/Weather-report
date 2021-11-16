@@ -9,7 +9,7 @@ import { WeatherService } from '../weather/weather.service';
 export class HomeComponent implements OnInit {
 
   constructor(private weatherService: WeatherService) { }
-  title = 'home';
+  title = 'Weather';
   // array of cities
   cities;
   // measurement
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   cityStatus = false;
   errorMsg = '';
   pStatus = false;
-  pErrorMsg = '';
+  statusCode:any;
 
   result: any;
 
@@ -63,27 +63,35 @@ export class HomeComponent implements OnInit {
 
   getWeatherData(city): void {
 
-    this.weatherService.getWeatherData(city, this.unit).subscribe((data) => {
-      this.result = data;
+    this.weatherService.getWeatherData(city, this.unit)
+    .subscribe(
+      (data) => {
 
-      this.cityStatus = true;
+        this.result = data;
 
-      this.cityName = this.result.name;
-      this.windSpeed = this.result.wind.speed;
-      this.temperature = this.result.main.temp;
-      if (this.unit === 'imperial') {
-        // this.temperature = this.temperature + ' F';
-        this.scale = 'F';
+        this.cityStatus = true;
+
+        this.cityName = this.result.name;
+        this.windSpeed = this.result.wind.speed;
+        this.temperature = this.result.main.temp;
+        // if (this.unit === 'imperial') {
+        //   this.scale = 'F';
+        // }
+        // else {
+        //   this.scale = 'C';
+        // }
+        this.scale = this.unit === 'imperial'? 'F': 'C';
+        this.pressure = this.result.main.pressure;
+        this.weatherDescription = this.result.weather[0].description;
+        // console.log(this.iconId);
+        this.weatherIcon = `http://openweathermap.org/img/wn/${this.result.weather[0].icon}@2x.png`;
+      },
+      (err)=>{
+        this.cityStatus = false;
+        this.statusCode = err.error.cod;    
+        this.errorMsg = err.error.message;
       }
-      else {
-        // this.temperature = this.temperature + ' C';
-        this.scale = 'C';
-      }
-      this.pressure = this.result.main.pressure;
-      this.weatherDescription = this.result.weather[0].description;
-      // console.log(this.iconId);
-      this.weatherIcon = `http://openweathermap.org/img/wn/${this.result.weather[0].icon}@2x.png`;
-    });
+    );
 
     this.getPredictData(city);
 
@@ -99,39 +107,28 @@ export class HomeComponent implements OnInit {
     weekday[4] = 'Thursday';
     weekday[5] = 'Friday';
     weekday[6] = 'Saturday';
-    this.weatherService.getWeatherPredicationData(city, this.unit).subscribe(res => {
-      this.result = res;
-      this.pStatus = true;
-      // this.predicts = [];
-      // predict next 5days;
-      for (let i = 0; i < 5; i++) {
-        const p1 = this.result.list[1 + (8 * i)];
-        const d = new Date(p1.dt_txt);
+    this.weatherService.getWeatherPredicationData(city, this.unit)
+    .subscribe(
+      res => {
+        this.result = res;
 
-        const day1 = weekday[d.getDay()];
+        // predict next 5days;
+        for (let i = 0; i < 5; i++) {
+          const p1 = this.result.list[1 + (8 * i)];
+          const d = new Date(p1.dt_txt);
+          const day1 = weekday[d.getDay()];
 
-        const pTemp = p1.main.temp;
-        if (this.unit === 'imperial'){
-          // pTemp = pTemp + ' F';
-          this.scale = 'F';
+          const pTemp = p1.main.temp;
+          const pWindSpeed = p1.wind.speed;
+          const pPressure = p1.main.pressure;
+          const pDes = p1.weather[0].description;
+          const pIcon = `http://openweathermap.org/img/wn/${p1.weather[0].icon}@2x.png`;
+
+          this.predicts[i] = { icon: pIcon, day: day1, description: pDes, temperature: pTemp, wind_speed: pWindSpeed, pressure: pPressure };
+
         }
-        else{
-          // pTemp = pTemp + ' C';
-          this.scale = 'C';
-        }
-
-        const pWindSpeed = p1.wind.speed;
-        const pPressure = p1.main.pressure;
-        const pDes = p1.weather[0].description;
-        const pIcon = `http://openweathermap.org/img/wn/${p1.weather[0].icon}@2x.png`;
-
-        this.predicts[i] = { icon: pIcon, day: day1, description: pDes, temperature: pTemp, wind_speed: pWindSpeed, pressure: pPressure };
-
-      }
-    },
-    (err) => {
-      this.pStatus = false;
-      this.pErrorMsg = err.error.message;
-    });
+      },
+      (err) => { }
+    );
   }
 }

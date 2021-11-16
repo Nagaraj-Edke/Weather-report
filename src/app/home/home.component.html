@@ -1,8 +1,8 @@
 <div class="p1">
-    <div class="mt-1">
+    <!-- <div class="mt-1">
         <h4 class="text-center">{{title | uppercase}}</h4>
         <hr class='bg-light'>
-    </div>
+    </div> -->
 
     <div>
         <button class="btn btn-primary" (click)="getMyData()">Get Your location weather</button>
@@ -11,12 +11,12 @@
         <div class="col-lg-3 col-sm">
             <p> change location</p>
 
-            <select #city name="city" (change)='getWeatherData(city.value)' class="bg-dark">
+            <select #city name="city" (change)='getWeatherData(city.value)' class="form-select bg-dark" style='height: 30px;width: 150px;'>
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
             <br><br>
         </div>
-        <div *ngIf='cityStatus; else elseBlock' class="flex-column col-4 col-lg-4 col-sm-12 font-weight-bold">
+        <div *ngIf='cityStatus; else elseBlock' class="col-10 col-lg-4 font-weight-bold">
             <h3> {{cityName}} </h3>
             <img [src]="weatherIcon" alt="img">
             <p>{{weatherDescription}}</p>
@@ -26,35 +26,61 @@
         </div>
 
         <ng-template #elseBlock class="flex-column col-lg-4 col-sm-12 font-weight-bold">
-            <h3>404</h3>
-            <h2>{{errorMsg}}</h2>
+            <div class="">
+                <h3>{{statusCode}}</h3>
+                <h2>{{errorMsg}}</h2>
+            </div>
         </ng-template>
 
     </div>
 
     <hr class="bg-light">
 
-    <h3 class="display-6 ml-5">5 days Forcast</h3>
+    <h3 class="display-6 ml-5">Weather Forcasting</h3>
     <br>
 
-    <div class="row ml-sm-3 ml-md-0">
-        <div class="col-lg-1 col-md-1"></div>
-        <div *ngIf="!pStatus; else errorBlock">
-            <h3>404</h3>
-            <h2>{{pErrorMsg}}</h2>
+    <div class="row justify-content-md-center bg-blue mx-1"> <!-- class="row ml-sm-3 ml-md-0 "-->
+        <!-- <div class="col-lg-1 col-md-1"></div> -->
+        <div *ngIf="!cityStatus; else errorBlock">
+            <h3>{{statusCode}}</h3>
+            <h2>{{errorMsg}}</h2>
         </div>
         <ng-template #errorBlock>
-            <div *ngFor="let data of predicts" class="card col-lg-2 col-md-2 col-sm-6 font-weight-bold bg-blue mx-md-2" style="min-width: 15rem;">
-                <div class="card-body text-center">
-                    <h5>{{data.day}}</h5>
-                    <img [src]="data.icon" alt="img">
-                    <p>{{data.description}}</p>
-                    <p>{{data.temperature}} &deg;{{scale}}</p>
-                    <p>{{data.wind_speed}} m/s</p>
-                    <p>{{data.pressure}} hpa</p>
+            <div class="wrapper">
+                <div *ngFor="let data of predicts" class="item card bg-blue" style="min-width: 11rem;">
+                    <!-- class="card item col-lg-2 col-md-2 col-sm-6 font-weight-bold bb mx-md-1" -->
+                    <div class="card-body">
+                        <h5>{{data.day}}</h5>
+                        <img [src]="data.icon" alt="img">
+                        <p>{{data.description}}</p>
+                        <p>{{data.temperature}} &deg;{{scale}}</p>
+                        <p>{{data.wind_speed}} m/s</p>
+                        <p>{{data.pressure}} hpa</p>
+                    </div>
                 </div>
-                
             </div>
         </ng-template>
     </div>
+
+    <!-- <div>
+        <div *ngIf="''">
+            <h3>404</h3>
+            <h2>{{errorMsg}}</h2>
+        </div>
+        <div>
+            <div class="wrapper">
+                <div class="item bb card" *ngFor='let data of predicts' style="min-width: 10rem;">
+                    <div class="col card-body">
+                        <h5>{{data.day}} </h5>
+                        <img [src]="data.icon" alt="img">
+                        <p>{{data.description}}</p>
+                        <p>{{data.temperature}} &deg;{{scale}}</p>
+                        <p>{{data.wind_speed}} m/s</p>
+                        <p>{{data.pressure}} hpa</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
 </div>

@@ -10,8 +10,36 @@
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 .bg-blue{
-    background-color: rgb(64, 117, 185);
+    background-color: rgba(23, 126, 243, 0.5);
 }
 .card{
-    margin: 2px 4rem;
+    margin: 2px 0.5rem;
 }
+
+.wrapper{
+    border: 0px solid #ddd;
+    display: flex;
+    overflow-x:auto;
+    padding: 5px 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #90A4AE #CFD8DC;
+}
+
+
+.wrapper .item{
+    min-width: 110px;
+    height: auto;
+}
+
+.wrapper::-webkit-scrollbar{
+    width: 11px;
+    height: 4px;
+}
+/* .wrapper::-webkit-scrollbar-track {
+    background: #CFD8DC;
+  } */
+  .wrapper::-webkit-scrollbar-thumb {
+    background-color: #90A4AE ;
+    border-radius: 1px;
+    border: 1px solid #CFD8DC;
+  }
