@@ -1,3 +1,6 @@
+<div class="loader" *ngIf='loader'>
+
+</div>
 <div class="mt-3">
     <h4 class="text-center">{{title | uppercase}}</h4>
     <hr class="margin bg-light">
@@ -7,48 +10,51 @@
     <div class="margin justify-content-sm-center">
         <div class="mt-5 d-flex justify-content-start row">
             <p class="col-lg-3 col-sm-8">Saved locations</p>
-            <select class="bg-dark col-lg-2 col-sm-8">
+            <select class="form-select bg-dark col-lg-2 col-sm-8">
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
         </div>
         
         <div class="mt-5 d-flex justify-content-start row">
             <label class="col-lg-3 col-sm-8">Add city</label>
-            <input #input type="text" class="bg-dark col-lg-2 col-sm-8" placeholder="Enter new location" name="location">
-            <input type="button" class="ml-md-5 col-lg-2 col-sm-6 btn btn-outline-primary text-primary1" id="btn" name="add" value="Add"
+            <!-- <div class="d-sm-flex flex-row"> -->
+            <input #input type="text" class="form-control bg-dark col-sm-4 col-md-2 " placeholder="Enter new location" name="location">
+            <input type="button" class="ml-md-5 col-sm-3 col-md-2 btn" [ngClass]='{"btn-outline-primary":normal,"btn-primary":xs}' id="btn" name="add" value="Add"
                 (click)="addNewCity(input.value)">
+            <!-- </div> -->
         </div>
 
 
         <div class=" mt-5 d-flex justify-content-start row">
             <p class="col-lg-3 col-sm-8">Remove city</p>
-            <select #select id="height" class="bg-dark col-lg-2 col-sm-8 text-center">
+            <select #select id="height" class=" form-select bg-dark col-lg-2 col-sm-8">
                 <option value="" style="color: grey;">--select option--</option>
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
-            <input type="button" class="ml-md-5 btn btn-outline-danger col-lg-2 col-sm-6 text-danger1" id="btn" value="Remove"
+            <input type="button" class="ml-md-5 btn col-lg-2 col-sm-6 " [ngClass]='{"btn-outline-danger":normal,"btn-danger":xs}' id="btn" value="Remove"
                 (click)="removeCity(select.value)"> 
         </div>
 
 
         <div class="mt-5 d-flex justify-content-start row">
             <p class="col-lg-3 col-sm-8">Set default city</p>
-            <select #setDefaultCity class="bg-dark col-lg-2 col-sm-8">
+            <select #setDefaultCity class="bg-dark col-lg-2 col-sm-8 form-select">
                 <option value="" style="color: grey;">--select option--</option>
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
-            <input type="button" class="ml-md-5 btn btn-outline-dark col-lg-2 col-sm-3 text-dark1" id="btn" value="Set Default"
+            <input type="button" class="ml-md-5 btn col-lg-2 col-sm-3 " [ngClass]='{"btn-outline-dark":normal,"btn-dark":xs}' id="btn" value="Set Default"
                 (click)="setDefault(setDefaultCity.value)">
         </div>
+        <br>
         <br><br>
 
         <div class="d-flex row">
             <label class="col-lg-3 col-sm-8">Change units</label>
             <div class="col-lg-2 col-sm-8">
                 <div id="units">
-                    <input type="radio" id="imperial" name="unit" value="imperial" [checked]="status1"> imperial
+                    <input type="radio" id="imperial" name="unit" value="imperial" [checked]="status1" (change)="onChange($event)"> imperial
                     <br>
-                    <input type="radio" id="metric" name="unit" value="metric" [checked]="status2"> metric
+                    <input type="radio" id="metric" name="unit" value="metric" [checked]="status2" (change)="onChange($event)"> metric
                 </div>
 
             </div>

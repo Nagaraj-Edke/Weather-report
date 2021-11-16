@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import {WeatherService} from '../weather/weather.service';
 
 @Component({
@@ -8,7 +9,11 @@ import {WeatherService} from '../weather/weather.service';
 })
 export class SettingComponent implements OnInit {
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService,private router:Router,private route:ActivatedRoute) {
+    this.getScreenSize();
+  }
+  
+  loader: boolean = false;
   title = 'settings';
   cities;
   items = ['imperial', 'metric'];
@@ -58,11 +63,12 @@ export class SettingComponent implements OnInit {
   removeCity(city): void{
     if(city){
       this.weatherService.removeCityName(city);
+      this.loader = true;
     }
     else{
       alert("select an option")
     }
-    
+    this.reload();
   }
 
   addNewCity(city): void {
@@ -74,16 +80,49 @@ export class SettingComponent implements OnInit {
       // console.log(city);
 
       this.weatherService.addNewCityLocation(city);
+      this.loader = true;
     }
+    this.reload();
   }
 
+  
   setDefault(city): void{
     if(city){
       this.weatherService.setDefaultCityLocation(city);
+      this.loader = true;
     }
     else{
       alert("select an option")
     }
+    this.reload();
+    
+  }
+  
+  scrWidth:any;
+  xs:boolean;normal:boolean;
+  @HostListener('window:resize', ['$event'])
+  getScreenSize(event?) {
+        this.scrWidth = window.innerWidth;
+        if(768>window.innerWidth){
+          this.xs = true;
+          this.normal = false;
+        }
+        else{
+          this.normal = true;
+          this.xs = false;
+        }
+        // console.log( this.scrWidth);
+  }
+
+  reload(){ 
+    this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['setting']);
+    });
+    this.loader = false;
+  }
+  onChange(event?){
+    // console.log(event);
+    this.reload();
     
   }
 }
