@@ -33,13 +33,13 @@
 
 .wrapper::-webkit-scrollbar{
     width: 11px;
-    height: 4px;
+    height: 11px;
 }
 /* .wrapper::-webkit-scrollbar-track {
     background: #CFD8DC;
   } */
   .wrapper::-webkit-scrollbar-thumb {
-    background-color: #90A4AE ;
-    border-radius: 1px;
+    background-color: #ddd ;
+    border-radius: 8px;
     border: 1px solid #CFD8DC;
   }
