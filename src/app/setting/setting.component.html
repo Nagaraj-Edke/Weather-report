@@ -18,8 +18,8 @@
         <div class="mt-5 d-flex justify-content-start row">
             <label class="col-lg-3 col-sm-8">Add city</label>
             <!-- <div class="d-sm-flex flex-row"> -->
-            <input #input type="text" class="form-control bg-dark col-sm-4 col-md-2 " placeholder="Enter new location" name="location">
-            <input type="button" class="ml-md-5 col-sm-3 col-md-2 btn" [ngClass]='{"btn-outline-primary":normal,"btn-primary":xs}' id="btn" name="add" value="Add"
+            <input #input type="text" class="form-control bg-dark text-light col-sm-4 col-md-2 " placeholder="Enter new location" name="location">
+            <input type="button" class="ml-md-5 col-sm-3 col-md-2 btn " [ngClass]='{"btn-outline-primary":normal,"btn-primary":xs}' id="btn" name="add" value="Add"
                 (click)="addNewCity(input.value)">
             <!-- </div> -->
         </div>
