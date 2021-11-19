@@ -1,14 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { WeatherService } from '../weather/weather.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private weatherService: WeatherService) { }
+  constructor(private weatherService: WeatherService, private router:Router,private modalService:NgbModal) { }
   title = 'Weather';
   // array of cities
   cities;
@@ -32,8 +35,14 @@ export class HomeComponent implements OnInit {
 
   predicts = [];
   // errStatus = false;
+  id;
 
   ngOnInit(): void {
+    // this.openPopup();
+    // this.id = document.getElementById('mod12');
+    // console.log(this.id);
+    // this.id.click();
+    
     this.cities = this.weatherService.getCities();
     const units = this.weatherService.getMeasurement();
 
@@ -46,7 +55,7 @@ export class HomeComponent implements OnInit {
     this.getWeatherData(this.cities[0]);
   }
 
-  getMyData(): void{
+  getMyLocationWeather(): void{
     let city;
 
     navigator.geolocation.getCurrentPosition((pos) => {
@@ -55,10 +64,21 @@ export class HomeComponent implements OnInit {
       this.weatherService.getLocation(lat, long).subscribe(res => {
         this.result = res;
         city = this.result.list[0].name;
-        this.getWeatherData(city);
+        // console.log(city);
+        
+        // this.weatherService.addNewCityLocation(city);
+        // this.weatherService.setDefaultCityLocation(city);
+        // this.getWeatherData(city);
+        this.weatherService.addMyLocation(city);
+        this.reload()
       });
     });
 
+  }
+  reload(){ 
+    this.router.navigateByUrl('/setting', { skipLocationChange: true }).then(() => {
+      this.router.navigate(['home']);
+    });
   }
 
   getWeatherData(city): void {
@@ -88,8 +108,20 @@ export class HomeComponent implements OnInit {
       },
       (err)=>{
         this.cityStatus = false;
-        this.statusCode = err.error.cod;    
-        this.errorMsg = err.error.message;
+        console.log(err);
+        
+        if(err.status ==0){
+          this.statusCode = '';
+          this.errorMsg = 'Internet Disconnected';
+          this.id = document.getElementById('mod12');
+          this.id.click();
+        }
+        else{
+          this.statusCode = err.error.cod ? err.error.cod: '';    
+          this.errorMsg = err.error.message? err.error.message: 'Interner Error';
+        }
+
+        
       }
     );
 
@@ -131,4 +163,9 @@ export class HomeComponent implements OnInit {
       (err) => { }
     );
   }
+
+  open(content){
+    this.modalService.open(content, {backdropClass: 'light-blue-backdrop',centered: true,windowClass:'dark-modal'});
+  }
+
 }

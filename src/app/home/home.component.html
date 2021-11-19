@@ -1,17 +1,13 @@
 <div class="p1">
-    <!-- <div class="mt-1">
-        <h4 class="text-center">{{title | uppercase}}</h4>
-        <hr class='bg-light'>
-    </div> -->
-
     <div>
-        <button class="btn btn-primary" (click)="getMyData()">Get Your location weather</button>
+        <button class="btn btn-primary" (click)="getMyLocationWeather()">Get Your location weather</button>
     </div>
     <div class="m-5 d-flex justify-content-lg-center justify-content-md-center justify-content-sm-center row">
         <div class="col-lg-3 col-sm">
             <p> change location</p>
 
-            <select #city name="city" (change)='getWeatherData(city.value)' class="form-select bg-dark" style='height: 30px;width: 150px;'>
+            <select #city name="city" (change)='getWeatherData(city.value)' class="form-select bg-dark"
+                style='height: 30px;width: 150px;'>
                 <option *ngFor='let city of cities' value="{{city}}">{{city}}</option>
             </select>
             <br><br>
@@ -39,8 +35,7 @@
     <h3 class="display-6 ml-5">Weather Forcasting</h3>
     <br>
 
-    <div class="row justify-content-md-center bg-blue mx-1"> <!-- class="row ml-sm-3 ml-md-0 "-->
-        <!-- <div class="col-lg-1 col-md-1"></div> -->
+    <div class="row justify-content-md-center bg-blue mx-1">
         <div *ngIf="!cityStatus; else errorBlock">
             <h3>{{statusCode}}</h3>
             <h2>{{errorMsg}}</h2>
@@ -48,7 +43,6 @@
         <ng-template #errorBlock>
             <div class="wrapper">
                 <div *ngFor="let data of predicts" class="item card bg-blue" style="min-width: 11rem;">
-                    <!-- class="card item col-lg-2 col-md-2 col-sm-6 font-weight-bold bb mx-md-1" -->
                     <div class="card-body">
                         <h5>{{data.day}}</h5>
                         <img [src]="data.icon" alt="img">
@@ -61,26 +55,20 @@
             </div>
         </ng-template>
     </div>
-
-    <!-- <div>
-        <div *ngIf="''">
-            <h3>404</h3>
-            <h2>{{errorMsg}}</h2>
-        </div>
-        <div>
-            <div class="wrapper">
-                <div class="item bb card" *ngFor='let data of predicts' style="min-width: 10rem;">
-                    <div class="col card-body">
-                        <h5>{{data.day}} </h5>
-                        <img [src]="data.icon" alt="img">
-                        <p>{{data.description}}</p>
-                        <p>{{data.temperature}} &deg;{{scale}}</p>
-                        <p>{{data.wind_speed}} m/s</p>
-                        <p>{{data.pressure}} hpa</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div> -->
 </div>
+<button id="mod12" class="d-none btn btn-primary" (click)="open(content)">open modal</button>
+<ng-template id='c123' #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{errorMsg}}</h4>
+        <button type="button" class1="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <p>Unable to connect to the Internet&hellip;</p>
+        <span>Data is not loaded becauseyour computer not connected to internet</span>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

@@ -37,3 +37,6 @@
 .bg-effect a.active {
     border-bottom: 3px solid blue;
 }
+.header:hover{
+    background-color:  rgba(0, 0, 255, 0.1);
+}

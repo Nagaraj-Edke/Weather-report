@@ -38,8 +38,18 @@
 /* .wrapper::-webkit-scrollbar-track {
     background: #CFD8DC;
   } */
-  .wrapper::-webkit-scrollbar-thumb {
-    background-color: #ddd ;
-    border-radius: 8px;
-    border: 1px solid #CFD8DC;
-  }
+.wrapper::-webkit-scrollbar-thumb {
+  background-color: #ddd ;
+  border-radius: 8px;
+  border: 1px solid #CFD8DC;
+}
+.dark-modal .modal-content {
+  background-color: #292b2c;
+  color: white;
+}
+.dark-modal .close {
+  color: white;
+}
+.light-blue-backdrop {
+   background-color: #5cb3fd;
+}
